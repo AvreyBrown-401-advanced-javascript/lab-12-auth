@@ -13,9 +13,6 @@ mongoose.connect('mongodb+srv://Avrey125:Peaches125@cluster0-adwlw.mongodb.net/t
 
 });
 
-
-
-
 // Start the web server
-require('./src/app.js').start(process.env.PORT);
+require('./src/app.js').start(8080);
 

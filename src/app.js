@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const superagent = require('superagent');
+const Model = require('./auth/users-model');
 // Esoteric Resources
 const errorHandler = require( './middleware/error.js');
 const notFound = require( './middleware/404.js' );
@@ -28,16 +29,11 @@ app.use(authRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-// const linkedinTokenServerUrl = '';
-// const linkedinAPI = '';
-// const LINKEDIN_CLIENT_ID = process.env.LINKEDIN_CLIENT_ID;
-// const LINKEDIN_CLIENT_SECRET = process.env.LINKEDIN_CLIENT_SECRET;
-
 const linkedinToken = 'https://www.linkedin.com/oauth/v2/accessToken'
 const linkedinAPI = 'https://api.linkedin.com/v2/me'
 const LINKEDIN_CLIENT_SECRET= 'rRp7S37b6gSLVwXH';
 const LINKEDIN_CLIENT_ID = '86p5hspkb9vrbl';
-const API_URL = 'http://localhost:3000/oauth';
+const API_URL = 'https://lab-12-aavrey.herokuapp.com/oauth';
 
 app.get('/oauth', authorize);
 
@@ -64,24 +60,18 @@ function authorize(request, response) {
       return superagent.get(linkedinAPI)
         .set('Authorization', `Bearer ${token}`)
     })
-    .then(response => {
-      let user = response.body;
+    .then(results => {
+      let user = results.body;
       console.log('3) here is our user', user);
-      response.status(200).json(user);
-
+      Model.createFromOauth(user)
+      .then(res => {
+        response.status(200).json(res.generateToken());
+      })
     })
     .catch(e => response.send(e));
 }
 
-
-
-
 const port = 3000;
-
-
-
-
-
 
 module.exports = {
   server: app,
