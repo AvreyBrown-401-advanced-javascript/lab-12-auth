@@ -11,10 +11,10 @@ module.exports = (req, res, next) => {
     // BASIC Auth  ... Authorization:Basic ZnJlZDpzYW1wbGU=
 
     switch(authType.toLowerCase()) {
-      case 'basic':
-        return _authBasic(authString);
-      default:
-        return _authError();
+    case 'basic':
+      return _authBasic(authString);
+    default:
+      return _authError();
     }
 
   } catch(e) {

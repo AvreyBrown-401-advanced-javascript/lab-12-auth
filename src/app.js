@@ -29,8 +29,8 @@ app.use(authRouter);
 app.use(notFound);
 app.use(errorHandler);
 
-const linkedinToken = 'https://www.linkedin.com/oauth/v2/accessToken'
-const linkedinAPI = 'https://api.linkedin.com/v2/me'
+const linkedinToken = 'https://www.linkedin.com/oauth/v2/accessToken';
+const linkedinAPI = 'https://api.linkedin.com/v2/me';
 const LINKEDIN_CLIENT_SECRET= 'rRp7S37b6gSLVwXH';
 const LINKEDIN_CLIENT_ID = '86p5hspkb9vrbl';
 const API_URL = 'https://lab-12-aavrey.herokuapp.com/oauth';
@@ -58,20 +58,19 @@ function authorize(request, response) {
     })
     .then(token => {
       return superagent.get(linkedinAPI)
-        .set('Authorization', `Bearer ${token}`)
+        .set('Authorization', `Bearer ${token}`);
     })
     .then(results => {
       let user = results.body;
       console.log('3) here is our user', user);
       Model.createFromOauth(user)
-      .then(res => {
-        response.status(200).json(res.generateToken());
-      })
+        .then(res => {
+          response.status(200).json(res.generateToken());
+        });
     })
     .catch(e => response.send(e));
 }
 
-const port = 3000;
 
 module.exports = {
   server: app,
