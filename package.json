@@ -1,0 +1,44 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test-watch": "jest --watchAll",
+    "test": "jest",
+    "lint": "eslint ./**/*.js --fix"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "cors": "^2.8.5",
+    "debug": "^4.1.0",
+    "dotenv": "^6.2.0",
+    "eslint": "^6.6.0",
+    "express": "^4.17.1",
+    "jest": "^24.9.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^5.2.11",
+    "mongoose": "^5.7.7",
+    "mongoose-schema-jsonschema": "^1.2.1",
+    "morgan": "^1.9.1",
+    "require-directory": "^2.1.1",
+    "supertest": "^3.4.2",
+    "swagger-ui-express": "^4.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AvreyBrown-401-advanced-javascript/lab-12-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AvreyBrown-401-advanced-javascript/lab-12-auth/issues"
+  },
+  "homepage": "https://github.com/AvreyBrown-401-advanced-javascript/lab-12-auth#readme"
+}
